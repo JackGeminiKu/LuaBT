@@ -1,11 +1,7 @@
 require("Common/Common")
 require("Base/Shared")
 
-BT.Mgr = {
-    treeList = {},
-    globalSharedData = BT.Shared:New()
-
-}
+BT.Mgr = {treeList = {}, globalSharedData = BT.Shared:New()}
 local this = BT.Mgr
 
 function BT.Mgr.EnabledBT(bt)
@@ -30,25 +26,20 @@ end
 
 function BT.Mgr.DelTree(bt)
     this.DisabledBT(bt)
-    Common.TableRemove(this.treeList,bt)
+    Common.TableRemove(this.treeList, bt)
 end
+
 -----------------------runtime----------------------
 function BT.Mgr.Update()
     if this.treeList == nil then
         return
     end
 
-    for k,v in pairs(this.treeList) do
-        if v.eStatus == BT.EBTreeStatus.Active then
-            if v:Update() ~= BT.ETaskStatus.Running then
-                this.DisabledBT(v)
+    for k, tree in pairs(this.treeList) do
+        if tree.eStatus == BT.EBTreeStatus.Active then
+            if tree:Update() ~= BT.ETaskStatus.Running then
+                this.DisabledBT(tree)
             end
         end
     end
 end
-
-
-
-
-
-

@@ -1,14 +1,12 @@
 require("Common/Common")
-BT.Task = {
-    bTree = nil,
-    base = nil,
-}
+
+BT.Task = {bTree = nil, base = nil}
 local this = BT.Task
 this.__index = this
 
 function BT.Task:New(name)
     local o = {}
-    setmetatable(o,this)
+    setmetatable(o, this)
     o.sName = name or Const.Empty
     return o
 end
@@ -39,25 +37,19 @@ function BT.Task:CanExcuteParallel()
 end
 
 function BT.Task:OnAwake()
-
 end
 
 function BT.Task:OnStart()
-
 end
 
 function BT.Task:OnUpdate()
-
 end
 
 function BT.Task:OnPause(bPause)
-
 end
 
 function BT.Task:OnEnd()
-
 end
 
 function BT.Task:OnConditionalAbort()
-
 end

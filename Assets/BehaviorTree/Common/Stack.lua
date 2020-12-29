@@ -6,10 +6,9 @@ function Stack.New()
     o.data = {}
     o.bottom = 1
     o.top = 1
-    setmetatable(o,Stack)
+    setmetatable(o, Stack)
     return o
 end
-
 
 function Stack:Empty()
     return self.bottom == self.top
@@ -42,6 +41,5 @@ function Stack:Clear()
     self.data = {}
     self.top = self.bottom
 end
-
 
 return Stack
