@@ -20,15 +20,15 @@ function BT.Task:SetName(name)
 end
 
 function BT.Task:CheckType(type)
-    local o = self
+    local task = self
     while true do
-        if o.base == nil then
+        if task.base == nil then
             return false
         end
-        if o.base == type then
+        if task.base == type then
             return true
         end
-        o = o.base
+        task = task.base
     end
 end
 

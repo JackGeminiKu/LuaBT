@@ -1,4 +1,5 @@
 require("Base/Task")
+
 BT.ParentTask = {base = BT.Task}
 local this = BT.ParentTask
 

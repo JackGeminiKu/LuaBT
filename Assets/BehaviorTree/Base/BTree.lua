@@ -172,6 +172,7 @@ function BT.BTree:FindTasksWithName(name)
     end
     return tab
 end
+
 ------------------runtime---------------
 function BT.BTree:Update()
     -- 进入评估阶段，中断修改运行栈
@@ -261,11 +262,8 @@ function BT.BTree:ConditionalReevaluate()
                     table.remove(self.tConditionalReevaluate, j)
                 end
             end
-
         until (true)
-
     end
-
 end
 
 function BT.BTree:PushTask(taskIndex, stackIndex)
@@ -275,7 +273,7 @@ function BT.BTree:PushTask(taskIndex, stackIndex)
         return
     end
 
-    if stack:Empty() == false and stack:Peek() == taskIndex then
+    if not stack:Empty() and stack:Peek() == taskIndex then
         return
     end
     stack:Push(taskIndex)
@@ -321,7 +319,6 @@ function BT.BTree:PopTask(stackIndex, status)
             end
         end
     elseif task:CheckType(BT.Composite) then
-
         repeat
             if parentComposite == nil then
                 -- for i=#self.tConditionalReevaluate,1,-1 do
@@ -375,7 +372,6 @@ function BT.BTree:PopTask(stackIndex, status)
                 end
             end
         until (true)
-
     end
     if stack:Empty() then
         self.tRunStack[stackIndex] = Const.Empty
