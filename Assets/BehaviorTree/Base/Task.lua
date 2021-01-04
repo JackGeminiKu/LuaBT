@@ -1,6 +1,9 @@
 require("Common/Common")
 
-BT.Task = {bTree = nil, base = nil}
+BT.Task = {
+    bTree = nil,
+    base = nil
+}
 local this = BT.Task
 this.__index = this
 

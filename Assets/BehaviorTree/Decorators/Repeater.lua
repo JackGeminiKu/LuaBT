@@ -1,10 +1,10 @@
 BT.Repeater = {
-    base = BT.Decorator,
+    base = BT.Decorator
 }
 local this = BT.Repeater
 
 this.__index = this
-setmetatable(this,this.base)
+setmetatable(this, this.base)
 
 function BT.Repeater:New(name)
     local o = this.base:New(name)
@@ -12,7 +12,7 @@ function BT.Repeater:New(name)
     o.iExecutionCount = 1
     o.bRepeatForever = false
     o.bEndOnFailure = false
-    setmetatable(o,this)
+    setmetatable(o, this)
     return o
 end
 

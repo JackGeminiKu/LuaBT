@@ -1,6 +1,8 @@
 require("Base/ParentTask")
 
-BT.Composite = {base = BT.ParentTask}
+BT.Composite = {
+    base = BT.ParentTask
+}
 
 local this = BT.Composite
 this.__index = this

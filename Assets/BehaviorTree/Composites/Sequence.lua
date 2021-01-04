@@ -1,15 +1,15 @@
 require("Base/Composite")
 BT.Sequence = {
-    base = BT.Composite,
+    base = BT.Composite
 }
 local this = BT.Sequence
 
 this.__index = this
-setmetatable(this,this.base)
+setmetatable(this, this.base)
 
 function BT.Sequence:New(name)
     local o = this.base:New(name)
-    setmetatable(o,this)
+    setmetatable(o, this)
     return o
 end
 

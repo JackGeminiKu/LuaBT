@@ -1,5 +1,7 @@
 require("Base/Task")
-BT.Action = {base = BT.Task}
+BT.Action = {
+    base = BT.Task
+}
 local this = BT.Action
 
 this.__index = this

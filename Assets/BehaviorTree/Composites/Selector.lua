@@ -1,15 +1,15 @@
 require("Base/Composite")
 BT.Selector = {
-    base = BT.Composite,
+    base = BT.Composite
 }
 local this = BT.Selector
 
 this.__index = this
-setmetatable(this,this.base)
+setmetatable(this, this.base)
 
 function BT.Selector:New(name)
     local o = this.base:New(name)
-    setmetatable(o,this)
+    setmetatable(o, this)
     return o
 end
 
