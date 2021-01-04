@@ -10,7 +10,10 @@ end
 
 function BT.Shared:GetData(name)
     if self.data[name] == nil then
-        self.data[name] = {name = name, val = nil}
+        self.data[name] = {
+            name = name,
+            val = nil
+        }
     end
     return self.data[name]
 end

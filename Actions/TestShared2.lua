@@ -1,15 +1,15 @@
 require("Base/Action")
 BT.TestShared2 = {
-    base = BT.Action,
+    base = BT.Action
 }
 local this = BT.TestShared2
 
 this.__index = this
-setmetatable(this,this.base)
+setmetatable(this, this.base)
 
 function BT.TestShared2:New(name)
     local o = this.base:New(name)
-    setmetatable(o,this)
+    setmetatable(o, this)
     o.sharedVal = Const.Empty
     o.val = Const.Empty
     return o
@@ -21,11 +21,9 @@ function BT.TestShared2:OnStart()
 end
 
 function BT.TestShared2:OnUpdate()
-    if UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.W) then
-        self.sharedVal.val = "sharedVal: by TestShared2"
-        self.val = "val: by TestShared2"
-    end
+    self.sharedVal.val = "sharedVal: by TestShared2"
+    self.val = "val: by TestShared2"
 
-    LogMgr.Normal("2: "..(self.sharedVal.val and self.sharedVal.val or Const.Empty).." "..self.val)
+    LogMgr.Normal("2: " .. (self.sharedVal.val and self.sharedVal.val or Const.Empty) .. " " .. self.val)
     return BT.ETaskStatus.Success
 end

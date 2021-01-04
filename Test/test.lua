@@ -29,9 +29,6 @@ function Test:Update()
 end
 
 function Test:Run()
-    local btMgrObj = UnityEngine.GameObject("BTManager")
-    btMgrObj:AddComponent(typeof(BehaviorTest))
-
     -- bt1 = this:CreateBT1()
     -- bt1:EnabledBT()
 
@@ -49,6 +46,9 @@ function Test:Run()
 
     local bt6 = this:CreateBT6()
     bt6:EnabledBT()
+    for i = 1, 10 do
+        bt6:Update()
+    end
 end
 
 function Test:CreateBT1()
@@ -270,3 +270,5 @@ function Test:CreateBT6()
 
     return btree
 end
+
+Test:Run()
