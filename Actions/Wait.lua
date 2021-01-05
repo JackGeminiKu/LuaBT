@@ -20,8 +20,9 @@ function BT.Wait:OnStart()
 end
 
 function BT.Wait:OnUpdate()
-    self.fStartTime = self.fStartTime + UnityEngine.Time.deltaTime
+    LogMgr.Normal('[ ' .. self.sName .. ' ]')
 
+    self.fStartTime = self.fStartTime + 0.005
     if self.fStartTime >= self.fTime then
         return BT.ETaskStatus.Success
     else

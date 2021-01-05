@@ -44,35 +44,39 @@ function Test:Run()
     -- bt5 = this:CreateBT5()
     -- bt5:EnabledBT()
 
-    local bt6 = this:CreateBT6()
-    bt6:EnabledBT()
-    for i = 1, 100 do
-        bt6:Update()
+    local bt = this:CreateBT1()
+    bt:EnabledBT()
+    for i = 1, 10 do
+        bt:Update()
     end
 end
 
 function Test:CreateBT1()
-    local btree = BT.BTree:New(nil, nil)
+    local btree = BT.BTree:New(nil, 'BT1')
     -- 1
-    local sel1001 = BT.Selector:New()
+
+    local sel1001 = BT.Selector:New('sel1001')
     btree:AddRoot(sel1001)
+
     -- 2
-    local seq2001 = BT.Sequence:New()
+    local seq2001 = BT.Sequence:New('seq2001')
     seq2001:SetAbortType(BT.EAbortType.LowerPriority)
-    local rep2001 = BT.Repeater:New()
-    rep2001:SetExecutionCount(300)
+    local rep2001 = BT.Repeater:New('rep2001')
+    rep2001:SetExecutionCount(3)
     sel1001:AddChild(seq2001)
     sel1001:AddChild(rep2001)
+
     -- 3
-    local boolCom3001 = BT.BoolComparison:New("bool", true, false)
-    local log3001 = BT.Log:New(nil, "this is Log3001")
+    local boolCom3001 = BT.BoolComparison:New("boolCom3001", true, false)
+    local log3001 = BT.Log:New('log3001', "this is Log3001")
     seq2001:AddChild(boolCom3001)
     seq2001:AddChild(log3001)
-    local seq3001 = BT.Sequence:New()
+    local seq3001 = BT.Sequence:New('seq3001')
     rep2001:AddChild(seq3001)
+
     -- 4
-    local log4001 = BT.Log:New(nil, "this is Log4001")
-    local wait4001 = BT.Wait:New(nil, 0.01)
+    local log4001 = BT.Log:New('log4001', "this is Log4001")
+    local wait4001 = BT.Wait:New('wait4001', 0.01)
     seq3001:AddChild(log4001)
     seq3001:AddChild(wait4001)
 
