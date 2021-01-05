@@ -1,6 +1,8 @@
 require("Base/Task")
 
-BT.ParentTask = {base = BT.Task}
+BT.ParentTask = {
+    base = BT.Task
+}
 local this = BT.ParentTask
 
 this.__index = this
@@ -39,7 +41,8 @@ end
 
 function BT.ParentTask:AddChildList(taskList)
     if #taskList + #self.tChildTaskList > self:MaxChildCount() then
-        LogMgr.Error(BT.ErrorRet.ChildCountMax .. " " .. #taskList .. " " .. #self.tChildTaskList .. " " .. self:MaxChildCount())
+        LogMgr.Error(BT.ErrorRet.ChildCountMax .. " " .. #taskList .. " " .. #self.tChildTaskList .. " " ..
+                         self:MaxChildCount())
     end
     for i = 1, #taskList do
         table.insert(self.tChildTaskList, taskList[i])
@@ -59,7 +62,6 @@ function BT.ParentTask:CanExcute()
 end
 
 function BT.ParentTask:OnChildStart(relativeChildIndex)
-
 end
 
 function BT.ParentTask:OnChildExcuted(status)

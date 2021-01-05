@@ -1,15 +1,15 @@
 require("Base/Composite")
 BT.Parallel = {
-    base = BT.Composite,
+    base = BT.Composite
 }
 local this = BT.Parallel
 
 this.__index = this
-setmetatable(this,this.base)
+setmetatable(this, this.base)
 
 function BT.Parallel:New(name)
     local o = this.base:New(name)
-    setmetatable(o,this)
+    setmetatable(o, this)
     o.tChildStatus = {}
     return o
 end

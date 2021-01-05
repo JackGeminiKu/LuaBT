@@ -18,20 +18,40 @@ function Common.TableRemove(tab, val)
     end
 end
 
-Const = {Empty = "none"}
-
-BT.EBTreeStatus = {None = 1, Pause = 2, Disabled = 3, Active = 4}
-
-BT.ETaskStatus = {Inactive = 1, Failure = 2, Success = 3, Running = 4}
-
-BT.ETaskType = {
-    UnKnow = 0,
-    Composite = 1, -- 必须包含子节点
-    Decorator = 2, -- 必须包含子节点
-    Action = 3, -- 最终子节点
-    Conditional = 4 -- 最终子节点
+Const = {
+    Empty = "none"
 }
 
-BT.EAbortType = {None = 0, Self = 1, LowerPriority = 2, Both = 3}
+BT.EBTreeStatus = {
+    None = "None",
+    Pause = "Pause",
+    Disabled = "Disabled",
+    Active = "Active"
+}
 
-BT.ErrorRet = {ChildCountMin = "儿子个数过少", ChildCountMax = "儿子已满"}
+BT.ETaskStatus = {
+    Inactive = "Inactive",
+    Failure = "Failure",
+    Success = "Success",
+    Running = "Running" 
+}
+
+BT.ETaskType = {
+    UnKnow = "Unknow",
+    Composite = "Composite", -- 必须包含子节点
+    Decorator = "Decorator", -- 必须包含子节点
+    Action = "Action", -- 最终子节点
+    Conditional = "Conditional" -- 最终子节点
+}
+
+BT.EAbortType = {
+    None = "None",
+    Self = "Self",
+    LowerPriority = "LowerPriority",
+    Both = "Both"
+}
+
+BT.ErrorRet = {
+    ChildCountMin = "儿子个数过少",
+    ChildCountMax = "儿子已满"
+}

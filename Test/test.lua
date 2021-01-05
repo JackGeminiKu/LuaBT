@@ -46,7 +46,7 @@ function Test:Run()
 
     local bt6 = this:CreateBT6()
     bt6:EnabledBT()
-    for i = 1, 10 do
+    for i = 1, 100 do
         bt6:Update()
     end
 end
@@ -252,20 +252,23 @@ function Test:CreateBT5()
 end
 
 function Test:CreateBT6()
-    local btree = BT.BTree:New(nil, nil)
+    local btree = BT.BTree:New(nil, "BT6")
     -- 1
-    local parallel1001 = BT.Parallel:New()
+    local parallel1001 = BT.Selector:New("parallel-1001")
     btree:AddRoot(parallel1001)
+
     -- 2
-    local rep2001 = BT.Repeater:New()
-    rep2001:SetRepeatForever(true)
-    local rep2002 = BT.Repeater:New()
-    rep2002:SetRepeatForever(true)
+    local rep2001 = BT.Repeater:New("rep-2001")
+    -- rep2001:SetRepeatForever(true)
+    rep2001:SetExecutionCount(3)
+    local rep2002 = BT.Repeater:New("rep-2002")
+    rep2002:SetExecutionCount(3)
     parallel1001:AddChildList{rep2001, rep2002}
+
     -- 3
-    local ts13001 = BT.TestShared1:New()
+    local ts13001 = BT.TestShared1:New("ts1-3001")
     rep2001:AddChild(ts13001)
-    local ts23001 = BT.TestShared2:New()
+    local ts23001 = BT.TestShared2:New("ts2-3001")
     rep2002:AddChild(ts23001)
 
     return btree
