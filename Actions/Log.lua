@@ -15,7 +15,6 @@ function BT.Log:New(name, content)
 end
 
 function BT.Log:OnUpdate()
-    LogMgr.Normal('[ ' .. self.sName .. ' ]')
-    LogMgr.Normal(self.sContent)
+    -- LogMgr.Normal(self.sContent)
     return BT.ETaskStatus.Success
 end

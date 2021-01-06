@@ -44,10 +44,13 @@ function Test:Run()
     -- bt5 = this:CreateBT5()
     -- bt5:EnabledBT()
 
-    local bt = this:CreateBT1()
+    local bt = this:CreateBT2()
     bt:EnabledBT()
-    for i = 1, 10 do
-        bt:Update()
+    for i = 1, 100 do
+        print('Update ' .. i)
+        if bt:Update() ~= BT.ETaskStatus.Running then
+            break;
+        end
     end
 end
 
@@ -84,39 +87,43 @@ function Test:CreateBT1()
 end
 
 function Test:CreateBT2()
-    local btree = BT.BTree:New(nil, nil)
+    local btree = BT.BTree:New(nil, 'BT2')
+
     -- 1
-    local parallel1001 = BT.Parallel:New()
+    local parallel1001 = BT.Parallel:New('parallel1001')
     btree:AddRoot(parallel1001)
+
     -- 2
-    local sel2001 = BT.Selector:New()
-    local rep2001 = BT.Repeater:New()
-    local sel2002 = BT.Selector:New()
-    local rep2002 = BT.Repeater:New()
-    rep2001:SetExecutionCount(100)
-    rep2002:SetExecutionCount(300)
+    local sel2001 = BT.Selector:New('sel2001')
+    local rep2001 = BT.Repeater:New('rep2001')
+    local sel2002 = BT.Selector:New('sel2002')
+    local rep2002 = BT.Repeater:New('rep2002')
+    rep2001:SetExecutionCount(2)
+    rep2002:SetExecutionCount(2)
     parallel1001:AddChild(sel2001)
     parallel1001:AddChild(rep2001)
     parallel1001:AddChild(sel2002)
     parallel1001:AddChild(rep2002)
+
     -- 3
-    local boolCom3001 = BT.BoolComparison:New(nil, true, true)
-    local log3001 = BT.Log:New(nil, "this is log3001")
-    local seq3001 = BT.Sequence:New()
-    local boolCom3002 = BT.BoolComparison:New(nil, true, true)
-    local boolCom3003 = BT.BoolComparison:New(nil, true, true)
-    local seq3002 = BT.Sequence:New()
+    local boolCom3001 = BT.BoolComparison:New('boolCom3001', true, true)
+    local log3001 = BT.Log:New('log3001', "this is log3001")
+    local seq3001 = BT.Sequence:New('seq3001')
+    local boolCom3002 = BT.BoolComparison:New('boolCom3002', true, true)
+    local boolCom3003 = BT.BoolComparison:New('boolCom3003', true, true)
+    local seq3002 = BT.Sequence:New('seq3002')
     sel2001:AddChild(boolCom3001)
     sel2001:AddChild(log3001)
     rep2001:AddChild(seq3001)
     sel2002:AddChild(boolCom3002)
     sel2002:AddChild(boolCom3003)
     rep2002:AddChild(seq3002)
+
     -- 4
-    local log4001 = BT.Log:New(nil, "this is log4001")
-    local wait4001 = BT.Wait:New(nil, 0.1)
-    local log4002 = BT.Log:New(nil, "this is log4002")
-    local wait4002 = BT.Wait:New(nil, 0.1)
+    local log4001 = BT.Log:New('log4001', "this is log4001")
+    local wait4001 = BT.Wait:New('wait4001', 0.1)
+    local log4002 = BT.Log:New('log4002', "this is log4002")
+    local wait4002 = BT.Wait:New('wait4002', 0.1)
     seq3001:AddChild(log4001)
     seq3001:AddChild(wait4001)
     seq3002:AddChild(log4002)

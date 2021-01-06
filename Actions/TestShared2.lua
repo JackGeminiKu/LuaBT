@@ -21,8 +21,6 @@ function BT.TestShared2:OnStart()
 end
 
 function BT.TestShared2:OnUpdate()
-    LogMgr.Normal('[ ' .. self.sName .. ' ]')
-
     self.sharedVal.val = "sharedVal: by TestShared2"
     self.val = "val: by TestShared2"
     LogMgr.Normal("2: " .. (self.sharedVal.val and self.sharedVal.val or Const.Empty) .. " " .. self.val)

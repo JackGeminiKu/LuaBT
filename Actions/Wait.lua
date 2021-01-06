@@ -20,9 +20,8 @@ function BT.Wait:OnStart()
 end
 
 function BT.Wait:OnUpdate()
-    LogMgr.Normal('[ ' .. self.sName .. ' ]')
-
-    self.fStartTime = self.fStartTime + 0.005
+    self.fStartTime = self.fStartTime + 0.05
+    -- print(self.sName .. ': ' .. self.fStartTime)
     if self.fStartTime >= self.fTime then
         return BT.ETaskStatus.Success
     else
