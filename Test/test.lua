@@ -44,7 +44,7 @@ function Test:Run()
     -- bt5 = this:CreateBT5()
     -- bt5:EnabledBT()
 
-    local bt = this:CreateBT7()
+    local bt = this:CreateBT6()
     bt:EnabledBT()
     for i = 1, 100 do
         print('Update ' .. i)
@@ -303,14 +303,16 @@ function Test:CreateBT6()
     return btree
 end
 
-function Test:CreateBT7()
-    local btree = BT.BTree:New(nil, "BT7")
+function Test:CreateLynx()
+    local btree = BT.BTree:New(nil, "Lynx")
     local seq1001 = BT.Sequence:New("seq1001")
     btree:AddRoot(seq1001)
 
-    local move2001 = BT.Move:New("move2001")
-    local buy2001 = BT.Buy:New("buy2001")
-    seq1001:AddChildList {move2001, buy2001}
+    local move = BT.Move:New("move")
+    local wait1 = BT.Wait:New("wait1.5", 1.5)
+    local buy = BT.Buy:New("buy")
+    local wait2 = BT.Wait:New("wait2.5", 2.5)
+    seq1001:AddChildList{move, wait1, buy, wait2}
 
     return btree
 end
