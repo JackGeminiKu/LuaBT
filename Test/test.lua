@@ -44,14 +44,20 @@ function Test:Run()
     -- bt5 = this:CreateBT5()
     -- bt5:EnabledBT()
 
-    local bt = this:CreateBT6()
+    local bt = this:CreateSelfAbort()
     bt:EnabledBT()
-    for i = 1, 100 do
-        print('Update ' .. i)
+    while true  do
         if bt:Update() ~= BT.ETaskStatus.Running then
             break
         end
     end
+
+    -- for i = 1, 100 do
+    --     print('Update ' .. i)
+    --     if bt:Update() ~= BT.ETaskStatus.Running then
+    --         break
+    --     end
+    -- end
 end
 
 function Test:CreateBT1()
@@ -313,6 +319,20 @@ function Test:CreateLynx()
     local buy = BT.Buy:New("buy")
     local wait2 = BT.Wait:New("wait2.5", 2.5)
     seq1001:AddChildList{move, wait1, buy, wait2}
+
+    return btree
+end
+
+function Test:CreateSelfAbort()
+    local btree = BT.BTree:New(nil, "Self Abort")
+    local selector = BT.Selector:New("selector")
+    selector:SetAbortType(BT.EAbortType.Self)
+    btree:AddRoot(selector)
+
+    local checkFileValue = BT.CheckFileValue:New("Check file value", "lua")
+    local wait = BT.Wait:New("wait10", 10)
+    selector:AddChild(checkFileValue)
+    selector:AddChild(wait)
 
     return btree
 end

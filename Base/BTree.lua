@@ -393,7 +393,6 @@ function BT.BTree:RunTask(taskIndex, stackIndex)
         return BT.ETaskStatus.Inactive
     end
 
-    print('>>>' .. task.sName)
     self:PushTask(taskIndex, stackIndex)
     local status = BT.ETaskStatus.Inactive
     if task:CheckType(BT.ParentTask) then
@@ -401,6 +400,7 @@ function BT.BTree:RunTask(taskIndex, stackIndex)
     else
         status = task:OnUpdate()
     end
+    print('>>> ' .. os.date("%H:%M:%S", os.time()) .. ': ' .. task.sName .. ' ' .. status)
 
     if status ~= BT.ETaskStatus.Running then
         self:PopTask(stackIndex, status)

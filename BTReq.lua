@@ -22,7 +22,10 @@ require("Common/LogMgr")
 require("Composites/Parallel")
 require("Composites/Selector")
 require("Composites/Sequence")
+
 require("Conditionals/BoolComparison")
+require("Conditionals/CheckFileValue")
+
 require("Decorators/Inverter")
 require("Decorators/Repeater")
 require("Decorators/ReturnFailure")
