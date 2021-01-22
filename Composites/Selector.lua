@@ -18,7 +18,7 @@ function BT.Selector:MaxChildCount()
 end
 
 function BT.Selector:CheckChildCount()
-    if self.base.CheckChildCount(self) == false or #self.tChildTaskList ~= self:MaxChildCount() then
+    if self.base.CheckChildCount(self) == false or #self.tChildTaskList > self:MaxChildCount() then
         return false
     end
     return true

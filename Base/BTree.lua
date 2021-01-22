@@ -400,7 +400,9 @@ function BT.BTree:RunTask(taskIndex, stackIndex)
     else
         status = task:OnUpdate()
     end
-    print('>>> ' .. os.date("%H:%M:%S", os.time()) .. ': ' .. task.sName .. ' ' .. status)
+    if status ~= BT.ETaskStatus.Running then
+        print('>>> ' .. os.date("%H:%M:%S", os.time()) .. ': ' .. task.sName .. ' ' .. status)
+    end
 
     if status ~= BT.ETaskStatus.Running then
         self:PopTask(stackIndex, status)

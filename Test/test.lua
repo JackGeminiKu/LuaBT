@@ -44,7 +44,7 @@ function Test:Run()
     -- bt5 = this:CreateBT5()
     -- bt5:EnabledBT()
 
-    local bt = this:CreateSelfAbort()
+    local bt = this:CreateLowerPriorityAbort()
     bt:EnabledBT()
     while true  do
         if bt:Update() ~= BT.ETaskStatus.Running then
@@ -333,6 +333,26 @@ function Test:CreateSelfAbort()
     local wait = BT.Wait:New("wait10", 10)
     selector:AddChild(checkFileValue)
     selector:AddChild(wait)
+
+    return btree
+end
+
+function Test:CreateLowerPriorityAbort()
+    local btree = BT.BTree:New(nil, "Lower Priority")
+    local sequence1 = BT.Sequence:New("sequence1")
+    local selector = BT.Selector:New("selector")
+    selector:SetAbortType(BT.EAbortType.Both)
+    local inverter = BT.Inverter:New("inverter")
+    local checkFileValue = BT.CheckFileValue:New("check file value", "lua")
+    local sequence2 = BT.Sequence:New("sequence2")
+    local wait = BT.Wait:New("wait", 10)
+
+    btree:AddRoot(sequence1)
+    sequence1:AddChild(selector)
+    sequence1:AddChild(sequence2)
+    selector:AddChild(inverter)
+    sequence2:AddChild(wait)
+    inverter:AddChildList{checkFileValue}
 
     return btree
 end
